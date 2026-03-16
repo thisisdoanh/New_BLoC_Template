@@ -27,23 +27,6 @@ enum Language {
   final String countryCode;
   final String languageNameEnglish;
   final String languageName;
-}
-
-extension LanguageExtension on Language {
-  String get nameEnglish => languageNameEnglish;
-
-  String get name => languageName;
-
-  String get code => languageCode;
-
-  Locale get locale => Locale(languageCode, countryCode);
-
-  AssetGenImage get image {
-    return switch (this) {
-      Language.english => Assets.images.language.english,
-      Language.vietnamese => Assets.images.language.vietnam,
-    };
-  }
 
   static Language fromCode(String langCode) {
     return Language.values.firstWhere(
@@ -60,18 +43,19 @@ extension LanguageExtension on Language {
   }
 }
 
-extension LanguageStringExtension on String {
-  Language fromCode() {
-    return Language.values.firstWhere(
-      (language) => language.languageCode == this,
-      orElse: () => Language.english,
-    );
-  }
+extension LanguageExtension on Language {
+  String get nameEnglish => languageNameEnglish;
 
-  Language fromName() {
-    return Language.values.firstWhere(
-      (language) => language.languageName == this,
-      orElse: () => Language.english,
-    );
+  String get name => languageName;
+
+  String get code => languageCode;
+
+  Locale get locale => Locale(languageCode, countryCode);
+
+  AssetGenImage get image {
+    return switch (this) {
+      Language.english => Assets.images.language.english,
+      Language.vietnamese => Assets.images.language.vietnam,
+    };
   }
 }

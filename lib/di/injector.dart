@@ -6,4 +6,4 @@ import  'package:new_bloc_template/di/injector.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit()
-void initInjector() => getIt.init();
+Future<void> initInjector() async => getIt.init();
